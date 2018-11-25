@@ -1,6 +1,7 @@
 <main>
-    <button>Login</button>
-    <button>Register</button>
+    <!--Account stuff-->
+    <button onclick="location.href='/login'" type="submit">Login</button>   
+    <button onclick="location.href='/register'" type="submit">Register</button>
     <p>
         Welcome! Search for any song that you'd like to know more information about. To save any songs that you'd like please log in or sign up for an account.
     </p>
@@ -10,6 +11,7 @@
             <input type="text" id="searchItem"/>
             <label for="specificField">Field:</label>
             <select id="specificField">
+                <option>All</option>
                 <option>Title</option>
                 <option>Artist</option>
                 <option>Lyrics</option>
@@ -18,7 +20,15 @@
             <button type="submit">Submit</button>
         </form>
     </section>
-    <div id="results">
-        <!--Display results here-->
-    </div>
+    <section id="results">
+        <h1>Results</h1>
+        <ul id="titles">
+            {{#each songsList}}
+                <li><a href="/{{songsList.id}}">Title: {{songsList.title}}</a></li>
+            <!--null/no results-->
+            {{else}}
+                <li><p>No items match the criteria.</p></li>
+            {{/each}}
+        </ul>
+    </section>
 </main>

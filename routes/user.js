@@ -5,11 +5,7 @@ const router = express.Router();
 const userData = data.user;
 
 router.get("/", (req, res) => {
-    if (req.cookies && req.cookies.AuthCookie){
-        //render account here?
-        res.render("back");
-    }
-    else{
-        res.render("signin", {layout: false})
-    }
-})
+    
+});
+
+module.exports = router;
