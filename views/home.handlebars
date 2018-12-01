@@ -6,6 +6,7 @@
         Welcome! Search for any song that you'd like to know more information about. To save any songs that you'd like please log in or sign up for an account.
     </p>
     <section id="getStuff">
+        <h1>Search:</h1>
         <form method="POST" id="searching">
             <label for="searchItem">Search:</label>
             <input type="text" id="searchItem"/>
@@ -21,14 +22,16 @@
         </form>
     </section>
     <section id="results">
-        <h1>Results</h1>
-        <ul id="titles">
+        <h2>Results</h2>
+        <div id="titles">
             {{#each songsList}}
-                <li><a href="/{{songsList.id}}">Title: {{songsList.title}}</a></li>
+                <a href="/song/{{songsList.id}}">Title: {{songsList.title}}</a>
             <!--null/no results-->
             {{else}}
-                <li><p>No items match the criteria.</p></li>
+                <p>No items match the criteria.</p>
             {{/each}}
-        </ul>
+        </div>
     </section>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="/public/js/search.js"></script>
 </main>

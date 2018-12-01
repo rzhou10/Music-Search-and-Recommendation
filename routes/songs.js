@@ -1,6 +1,6 @@
 const data = require("../data");
-const bcrypt = require("bcrypt")
-const express = require("express")
+const bcrypt = require("bcrypt");
+const express = require("express");
 const router = express.Router();
 const songData = data.songs;
 

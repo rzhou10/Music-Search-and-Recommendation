@@ -1,6 +1,5 @@
 const mongoCollections = require("../config/mongoCollection");
-const songs = mongoCollections.songs;
-const uuid = require("uuid/v4");
+const songs = mongoCollections.main;
 
 async function getAllSongs() {
     const songCollection = await songs();
