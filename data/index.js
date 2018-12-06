@@ -1,7 +1,7 @@
-const userData = require("./user");
+const usersData = require("./users");
 const songsData = require("./songs");
 
 module.exports = {
-  user: userData,
+  users: usersData,
   songs: songsData
 };

@@ -1,4 +1,4 @@
-const mongoCollections = require("../config/mongoCollection");
+const mongoCollections = require("../config/mongoCollections");
 const songs = mongoCollections.main;
 
 async function getAllSongs() {

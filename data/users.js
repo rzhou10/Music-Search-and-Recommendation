@@ -1,5 +1,5 @@
 const mongoCollections = require("../config/mongoCollections");
-const Users = mongoCollections.Users;
+const Users = mongoCollections.users;
 const bcrypt = require("bcrypt");
 const saltRounds = 16;
 const uuid = require("uuid");
