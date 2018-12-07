@@ -1,11 +1,11 @@
-<div class = 'login-header'>
+<div class = 'header'>
     <header>
         <h1>Create Your Account</h1>
     </header>
 </div>
 <div class='container'>
     <p class = 'err-message'>{{message}}</p>
-    <form id='login-form' class='templatemo-login-form' action='/registration' onsubmit='return checkInput()' method='post'>
+    <form id='form' action='/registration' onsubmit='return checkInput()' method='post'>
         <div >
             <label for='username'>Username: <abbr title="Required. Must contain only alphanumeric characters and underscores.", style="color:red;">*</abbr></label>
             <input type='text' id='username' name='username' placeholder='Enter Username'>
@@ -33,3 +33,4 @@
         <p>Need help? Call 1-800-MUSIC-SEARCH.</p>
     </div>
 </div>
+<script src="/public/js/formValidation.js"></script>

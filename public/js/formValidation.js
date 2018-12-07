@@ -1,9 +1,10 @@
 function checkInput(){ 
-    const x = document.forms["login-form"]["username"].value,
-        y = document.forms["login-form"]["password"].value,
-        ln = document.forms["login-form"]["lastName"].value,
-        fn = document.forms["login-form"]["firstName"].value,
-        email = document.forms["login-form"]["email"].value,
+    console.log("form validation function is running!");
+    const x = document.forms["form"]["username"].value,
+        y = document.forms["form"]["password"].value,
+        ln = document.forms["form"]["lastName"].value,
+        fn = document.forms["form"]["firstName"].value,
+        email = document.forms["form"]["email"].value,
         // Must contain at least 1 lowercase alphabetical character,
         // 1 uppercase alphabetical character, 1 numeric character, 
         // 1 special character, and must be eight characters or longer
