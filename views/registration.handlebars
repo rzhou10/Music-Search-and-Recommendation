@@ -1,0 +1,36 @@
+<div class = 'header'>
+    <header>
+        <h1>Create Your Account</h1>
+    </header>
+</div>
+<div class='container'>
+    <p class = 'err-message'>{{message}}</p>
+    <form id='form' action='/registration' onsubmit='return checkInput()' method='post'>
+        <div >
+            <label for='username'>Username: <abbr title="Required. Must contain only alphanumeric characters and underscores.", style="color:red;">*</abbr></label>
+            <input type='text' id='username' name='username' placeholder='Enter Username'>
+        </div>        
+        <div>
+            <label for='password'>Password: <abbr title="Required. Must contain at least (1) one lowercase alphabetical character, (1) one uppercase alphabetical character, (1) one numeric character, (1) one special character, and must be (8) eight characters or longer.", style="color:red;">*</abbr></label>
+            <input type='password' id='password' name='password' placeholder='Enter Password'>
+        </div>
+        <div>
+            <label for='firstName'>First Name:</label>
+            <input type='text' id='firstName' name='firstName' placeholder='Enter First Name'>
+        </div>
+        <div>
+            <label for='lastName'>Last Name:</label>
+            <input type='text' id='lastName' name='lastName' placeholder='Enter Last Name'>
+        </div>
+        <div>
+            <label for='email'>Email:</label>
+            <input type='email' id='email' name='email' placeholder='Enter Email'> 
+        </div>
+        <div><button type='submit'>Register</button></div>
+    </form>
+    <div> 
+        <p>Already have an account? <a href="/login">Please sign in.</a></p>
+        <p>Need help? Call 1-800-MUSIC-SEARCH.</p>
+    </div>
+</div>
+<script src="/public/js/formValidation.js"></script>

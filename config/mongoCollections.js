@@ -14,5 +14,7 @@ const getCollectionFn = collection => {
 };
 
 module.exports = {
-    todoItems : getCollectionFn("")
-  }
+  main: getCollectionFn("main"),
+  reviews: getCollectionFn("reviews"),
+  users: getCollectionFn("users")
+};

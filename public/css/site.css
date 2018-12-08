@@ -1,0 +1,54 @@
+/* Center form and add border*/
+form {
+    border: 3px solid #f1f1f1;
+    padding: 20px;
+}
+/* Add padding to containers */
+.container {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Set a style for header */
+.header {
+    padding-bottom: 1rem;
+    border-bottom: .05rem solid #e5e5e5;
+    text-align: center;
+}
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+/* Full-width inputs */
+input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+/* Error message */
+.err-message {
+    color: red;
+    font-weight:bold;
+}
+/* Page footer */
+.footer {
+    padding-top: 1.5rem;
+    color: #777;
+    border-top: .05rem solid #e5e5e5;
+    height: 60px;  /* footer height */
+    padding-top: 20px;
+    display: block;
+    margin-top: 20px; /* space between content and footer */
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+}
