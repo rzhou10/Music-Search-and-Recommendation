@@ -1,3 +1,7 @@
+body{
+    font-family: "Helvetica"
+}
+
 /* Center form and add border*/
 form {
     border: 3px solid #f1f1f1;
@@ -51,4 +55,14 @@ input[type=text], input[type=password], input[type=email] {
     box-sizing: border-box;
     position: relative;
     width: 100%;
+}
+abbr{
+    color: red;
+}
+li{
+    list-style-type: none;
+}
+
+.main{
+    font-family: "Helvetica"
 }

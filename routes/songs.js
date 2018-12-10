@@ -8,20 +8,26 @@ router.get("/", async(req, res) =>{
     res.render("home", {layout: false});
 });
 
-//renders with items searched
-//only link to this if items are searched, might crash otherwise
-router.post("/home", async(req, res) =>{
-    const item = req.body.searchItem;
-    const field = req.body.specificField;
-    let songsList;
-    if (field == "All" && item == "All"){
-        songsList = await songData.getAllSongs();
-    }
-    else{
-        songsList = await songData.getSongByField(item, field);
-    }
+// renders with items searched
+router.post("/", async(req, res) =>{
+    try{
+        const item = req.body.searchItem;
+        const field = req.body.specificField;
 
-    res.render("home", { songsList: songsList });
+        //renders of "All" was selected, no need for item field.
+        if (field === "All"){
+            let songsList = await songData.getAllSongs();
+            res.render("home", { songsList: songsList });
+        }
+        else if (item && field){
+            let songsList = await songData.getSongByField(item, field);
+            res.render("home", { songsList: songsList });
+        }
+            
+    }
+    catch (e){
+        res.status(404).json({ error: e });
+    }
 });
 
 module.exports = router;

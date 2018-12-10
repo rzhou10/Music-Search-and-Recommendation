@@ -13,6 +13,7 @@
             let newField = specificField.val();
             let displayResults = $("results");
 
+            //if there's stuff in the inputs
             if (newItem && newField){
                 let requestConfig = {
                     method: "POST",

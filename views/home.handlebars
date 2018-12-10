@@ -1,28 +1,30 @@
-<main>
+<div class="main">
     <!--Account stuff-->
     <button onclick="location.href='/login'" type="submit">Login</button>   
     <button onclick="location.href='/registration'" type="submit">Register</button>
     <p>
         Welcome! Search for any song that you'd like to know more information about. To save any songs that you'd like please log in or sign up for an account.
     </p>
-    <section id="getStuff">
-        <h1>Search:</h1>
-        <form method="POST" id="searching">
+    <div id="getStuff">
+        <p>You can search by the items below, or enter "All" to check any field</p>
+        <ul>
+            <li>All</li>
+            <li>Title</li>
+            <li>Artist</li>
+            <li>Lyrics</li>
+            <li>Genre</li>
+        </ul>
+        <h1>Search</h1>
+        <form method="POST" action='/' id="searching">
             <label for="searchItem">Search:</label>
             <input type="text" id="searchItem"/>
             <label for="specificField">Field:</label>
-            <select id="specificField">
-                <option>All</option>
-                <option>Title</option>
-                <option>Artist</option>
-                <option>Lyrics</option>
-                <option>Genre</option>
-            </select>
+            <input type="text" id="specificField"/>
             <button type="submit">Submit</button>
         </form>
-    </section>
-    <section id="results">
-        <h2>Results</h2>
+    </div>
+    <div id="results">
+        <h1>Results</h1>
         <div id="titles">
             {{#each songsList}}
                 <a href="/song/{{songsList.id}}">Title: {{songsList.title}}</a>
@@ -31,7 +33,7 @@
                 <p>No items match the criteria.</p>
             {{/each}}
         </div>
-    </section>
+    </div>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="/public/js/search.js"></script>
-</main>
+</div>

@@ -6,7 +6,6 @@ const registrationRoute = require('./registration');
 const constructorMethod = (app) => {
   app.use('/', songsRoute);
   app.use("/user", userRoute);
-  app.use("/songs", songsRoute);
   app.use('/login', loginRoute);
   app.use('/registration', registrationRoute);
   app.use('*', (req, res) => {
