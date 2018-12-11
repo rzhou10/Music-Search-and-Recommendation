@@ -1,7 +1,10 @@
-body{
-    font-family: "Helvetica"
+* {
+    box-sizing: border-box;
+  }
+html, body{
+    font-family: "Helvetica";
+    font-size: 11pt;
 }
-
 /* Center form and add border*/
 form {
     border: 3px solid #f1f1f1;
@@ -19,8 +22,8 @@ form {
     border-bottom: .05rem solid #e5e5e5;
     text-align: center;
 }
-/* Set a style for all buttons */
-button {
+/* Set a style for all buttons with class="button" */
+.button {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -56,13 +59,40 @@ input[type=text], input[type=password], input[type=email] {
     position: relative;
     width: 100%;
 }
-abbr{
+abbr {
     color: red;
 }
-li{
+li {
     list-style-type: none;
 }
-
-.main{
-    font-family: "Helvetica"
+/* Side Navigation */
+.sideNavigation {
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 95px;
+    left: 10px;
+    background: lightgray;
+    overflow-x: hidden;
+    padding: 8px;
 }
+.sideNavigation a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+.searchContainer, .favorites, .userDetails, .history {
+    margin-left: 210px; /* Same width as the sideNavigation + left position in px */
+    margin-right: 210px;
+    padding: 0px 10px;
+}
+.sideNavigation a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .sideNavigation a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }

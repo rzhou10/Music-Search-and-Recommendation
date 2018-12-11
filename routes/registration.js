@@ -8,9 +8,9 @@ const usersData = data.users;
 
 router.get('/', function(req, res, next){
     if(req.session && req.session.user){
-        res.redirect('/private', {title: "My Account Page"});
+        res.redirect('/account', {title: "My Account Page"});
     } else {
-        res.render('registration', {title: "Registration Page"});
+        res.render('music/registration', {title: "Registration Page"});
     }
 });
 
@@ -27,10 +27,10 @@ router.post('/', asyncMiddleware(async (req, res, next) => {
     const newUser = await allUsers.findOne({ username: username });
     console.log(newUser);
     if(newUser){
-        return res.status(401).render('registration', {message: "User Already Exists! Login or choose another Username"});
+        return res.status(401).render('music/registration', {message: "User Already Exists! Login or choose another Username"});
     }
     await usersData.createNewUser(username, firstName, lastName, email, password);
-    res.render('regSuccess', {title: "Successful Registration Page"});
+    res.render('music/regSuccess', {title: "Successful Registration Page"});
 }));
 
 module.exports = router;
