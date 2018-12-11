@@ -5,7 +5,7 @@ const router = express.Router();
 const songData = data.songs;
 
 router.get("/", async(req, res) =>{
-    res.render("home", {layout: false});
+    res.render("music/home");
 });
 
 // renders with items searched
@@ -17,13 +17,12 @@ router.post("/", async(req, res) =>{
         //renders of "All" was selected, no need for item field.
         if (field === "All"){
             let songsList = await songData.getAllSongs();
-            res.render("home", { songsList: songsList });
+            res.render("music/home", { songsList: songsList });
         }
         else if (item && field){
             let songsList = await songData.getSongByField(item, field);
-            res.render("home", { songsList: songsList });
+            res.render("music/home", { songsList: songsList });
         }
-            
     }
     catch (e){
         res.status(404).json({ error: e });
