@@ -16,35 +16,61 @@
             
             var newItem = values['searchItem'];
             var newField = values['specificField'];
-
-            //console.log("newitem = " + newItem);
-            //console.log("newField = " + newField);
+            
+            var displayResults = document.getElementById("results");
 
             //if there's stuff in the inputs
-            if (newItem && newField){
+            if (newField === "All"){
                 let requestConfig = {
                     method: "POST",
                     url: "/",
                     contentType: "application/json",
                     data: JSON.stringify({
-                        searchItem: searchItem,
-                        specificField: specificField
+                        specificField: newField
                     })
                 }
 
                 $.ajax(requestConfig).then(function(responseMessage){
-                    displayResults.html(responseMessage.message);
+                    for (let item of responseMessage){
+                        
+                        let newSong = document.createElement("a");
+                        newSong.href = "/songs/" + item.id
+                        newSong.innerText = item.title;
+
+                        let newLi = document.createElement("li");
+
+                        newLi.appendChild(newSong);
+
+                        displayResults.appendChild(newLi);
+                    }
+                    
                 });
             }
             else{
                 let requestConfig = {
                     method: "POST",
                     url: "/",
-                    contentType: "application/json"
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        searchItem: newItem,
+                        specificField: newField
+                    })
                 }
-                
-                $.ajax(requestConfig).then(function(){
-                    displayResults.html("Please enter a search term.");
+
+                $.ajax(requestConfig).then(function(responseMessage){
+                    console.log(responseMessage);
+                    for (let item of responseMessage){
+                        
+                        let newSong = document.createElement("a");
+                        newSong.href = "/songs/" + item.id
+                        newSong.innerText = item.title;
+                        
+                        let newLi = document.createElement("li");
+
+                        newLi.appendChild(newSong);
+
+                        displayResults.appendChild(newLi);
+                    }
                 });
             }
         });

@@ -1,5 +1,4 @@
 const data = require("../data");
-const bcrypt = require("bcrypt");
 const express = require("express");
 const router = express.Router();
 const songData = data.songs;
@@ -17,11 +16,11 @@ router.post("/", async(req, res) =>{
         //renders of "All" was selected, no need for item field.
         if (field === "All"){
             let songsList = await songData.getAllSongs();
-            res.render("music/home", { songsList: songsList });
+            res.json(songsList);
         }
         else if (item && field){
-            let songsList = await songData.getSongByField(item, field);
-            res.render("music/home", { songsList: songsList });
+            let songsList = await songData.getSongByField(item.toLowerCase(), field.toLowerCase());
+            res.json(songsList);
         }
     }
     catch (e){

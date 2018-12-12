@@ -14,7 +14,7 @@ async function getSongByField(item, field){
         throw "field is needed";
     }
     const songCollection = await songs();
-    const list = await songCollection.find({field: item}).toArray();
+    const list = await songCollection.aggregate([{$match: {field : item}}]).toArray();
 
     return list;
 }
