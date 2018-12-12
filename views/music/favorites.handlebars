@@ -13,19 +13,16 @@
     <a href="/settings">Settings</a>
     <a href="/account/logout">Logout</a>
 </div>
-<!--Will List Favorites here. Work is in progress for this section.-->
+<!--Displays user's Favorites list here.-->
 <div class="favorites">
-    <p>Your favorites list</p>
+   <h2>Your Favorites List</h2>
+   {{#if result}}
     <ul>
-        <li>Song 1</li>
-        <li>Song 2</li>
-        <li>Song 3</li>
-        <li>Song 4</li>
-        <li>Song 5</li>
-        <li>Song 6</li>
-        <li>Song 7</li>
-        <li>Song 8</li>
-        <li>Song 9</li>
-        <li>Song 10</li>
+        {{#each songList}}
+            <li><h3>Title: {{this.song_title}}</h3></li> <img src="{{this.song_albumart}}" alt="{{this.song_title}}">
+        {{/each}}
+    {{else}}
+        <li>No item in favorites.</li>
     </ul>
+  {{/if}}
 </div>

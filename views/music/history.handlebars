@@ -13,19 +13,16 @@
     <a href="/settings">Settings</a>
     <a href="/account/logout">Logout</a>
 </div>
-<!--Will display Users search history here. Work is in progress for this section.-->
+<!--Displays Users search history here.-->
 <div class="history">
-    <p>Your search history</p>
+    <h2>Your search History</h2>
+    {{#if result}}
     <ul>
-        <li>Song 1</li>
-        <li>Song 2</li>
-        <li>Song 3</li>
-        <li>Song 4</li>
-        <li>Song 5</li>
-        <li>Song 6</li>
-        <li>Song 7</li>
-        <li>Song 8</li>
-        <li>Song 9</li>
-        <li>Song 10</li>
+        {{#each songList}}
+            <li><h3>Title: {{this.song_title}}</h3></li> <img src="{{this.song_albumart}}" alt="{{this.song_title}}">
+        {{/each}}
+    {{else}}
+        <li>No item in search history.</li>
     </ul>
+  {{/if}}
 </div>
