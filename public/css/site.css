@@ -23,7 +23,7 @@ form {
     text-align: center;
 }
 /* Set a style for all buttons with class="button" */
-.button {
+button {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
