@@ -31,7 +31,7 @@ router.post('/', asyncMiddleware(async (req, res, next) => {
         return res.status(401).render('music/login', {message: "The password provided is invalid. Please enter a valid password."});;
     }
     // sets a cookie with the user's info
-    req.session.user = user;
+    //req.session.user = user;
     return res.redirect('/account');
 }));
 
