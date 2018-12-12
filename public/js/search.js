@@ -1,17 +1,24 @@
 (
     function($){
         //all tags needed to get
-        let searching = $("searching");
-        let searchItem = $("searchItem");
-        let specificField = $("specificField");
+        let searching = $("form");
 
         //submission form
         searching.submit(function(event){
             event.preventDefault();
+            
+            var inputs = $('form :input');
 
-            let newItem = searchItem.val();
-            let newField = specificField.val();
-            let displayResults = $("results");
+            var values = {};
+            inputs.each(function() {
+                values[this.name] = $(this).val();
+            });
+            
+            var newItem = values['searchItem'];
+            var newField = values['specificField'];
+
+            //console.log("newitem = " + newItem);
+            //console.log("newField = " + newField);
 
             //if there's stuff in the inputs
             if (newItem && newField){
