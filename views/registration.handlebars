@@ -5,7 +5,7 @@
 </div>
 <div class='container'>
     <p class = 'err-message'>{{message}}</p>
-    <form id='form' action='/registration' onsubmit='checkInput()' method='post'>
+    <form id='form' action='/registration' onsubmit='return checkInput()' method='post'>
         <div >
             <label for='username'>Username <abbr title="Required. Must contain only alphanumeric characters and underscores.">*</abbr></label>
             <input type='text' id='username' name='username' placeholder='Enter Username'>
