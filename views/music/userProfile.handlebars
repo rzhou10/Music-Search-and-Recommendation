@@ -1,0 +1,24 @@
+<div class = 'header'>
+    <header>
+        <h1>Profile</h1>
+    </header>
+</div>
+<!--Side Navigation-->
+<div class="sideNavigation">
+    <a href="/account">My Account</a>
+    <a href="/account/favorites">Favorites</a>
+    <a href="/account/history">History</a>
+    <a href="/recommendations">Recommendations</a>
+    <a class = "active" href="/user">Profile</a>
+    <a href="/settings">Settings</a>
+    <a href="/account/logout">Logout</a>
+</div>
+<!--Will display user profile here. This is just for demo. Someone else is working on this part.-->
+<div class = "userDetails">
+    <h2>User Information</h2>
+    <p>User Id: {{userDetails._id}} </p>
+    <p>username: {{userDetails.username}} </p>
+    <p>Firt Name: {{userDetails.firstName}} </p>
+    <p>Last Name: {{userDetails.lastName}} </p>
+    <p>E-mail: {{userDetails.email}} </p>
+</div>

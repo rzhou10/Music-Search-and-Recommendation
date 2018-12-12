@@ -1,13 +1,13 @@
 {
   "name": "cs-546-final-project",
   "version": "1.0.0",
-  "description": "",
+  "description": "Music Search and Recommendation System",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
-  "author": "Anastasia Fasolia, Tulsi Patel, Bhumika Patoliya, Ravi Rathore, Renjie Zhou",
+  "author": "Anastasia Fasolia (CWID - 10432254), Tulsi Patel (CWID - 10440620), Bhumika Patoliya (CWID - 10432870), Ravi Rathore (CWID - 10442973), Renjie Zhou (CWID - 10396229)",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^3.0.2",

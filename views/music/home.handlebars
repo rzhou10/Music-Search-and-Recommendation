@@ -1,11 +1,14 @@
-<div class="main">
+<div class="header">
     <!--Account stuff-->
-    <button onclick="location.href='/login'" type="submit">Login</button>   
-    <button onclick="location.href='/registration'" type="submit">Register</button>
+    <button onclick="location.href='/login'" type="submit" class="button">Login</button>   
+    <button onclick="location.href='/registration'" type="submit" class="button">Register</button>
+</div>
+<!--Search bar-->
+<div class="searchContainer">
     <p>
         Welcome! Search for any song that you'd like to know more information about. To save any songs that you'd like please log in or sign up for an account.
     </p>
-    <div id="getStuff">
+    <section id="getStuff">
         <p>You can search by the items below, or enter "All" to check any field</p>
         <ul>
             <li>All</li>
@@ -14,17 +17,17 @@
             <li>Lyrics</li>
             <li>Genre</li>
         </ul>
-        <h1>Search</h1>
-        <form method="POST" action='/' id="searching">
+    <h2>Search</h2>
+        <form id="searching" method="POST" action='/'>
             <label for="searchItem">Search:</label>
-            <input type="text" id="searchItem"/>
+                <input type="text" id="searchItem"/>
             <label for="specificField">Field:</label>
-            <input type="text" id="specificField"/>
-            <button type="submit">Submit</button>
+                <input type="text" id="specificField"/>
+            <button type="submit" class="button">Submit</button>
         </form>
-    </div>
-    <div id="results">
-        <h1>Results</h1>
+    </section>
+    <section id="results">
+        <h2>Results</h2>
         <div id="titles">
             {{#each songsList}}
                 <a href="/song/{{songsList.id}}">Title: {{songsList.title}}</a>
@@ -33,7 +36,7 @@
                 <p>No items match the criteria.</p>
             {{/each}}
         </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <script src="/public/js/search.js"></script>
+    </section>
 </div>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="/public/js/search.js"></script>

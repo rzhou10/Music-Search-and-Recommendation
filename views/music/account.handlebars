@@ -1,0 +1,50 @@
+<div class = 'header'>
+    <header>
+        <h1>Account Page</h1>
+    </header>
+</div>
+<!--Side Navigation-->
+<div class="sideNavigation">
+    <a class="active" href="/account">My Account</a>
+    <a href="/account/favorites">Favorites</a>
+    <a href="/account/history">History</a>
+    <a href="/recommendations">Recommendations</a>
+    <a href="/user">Profile</a>
+    <a href="/settings">Settings</a>
+    <a href="/account/logout">Logout</a>
+</div>
+<div class="searchContainer">
+    <p>Welcome to your account!</p>
+    <!--Search bar-->
+    <section id="getStuff">
+        <p>You can search by the items below, or enter "All" to check any field</p>
+        <ul>
+            <li>All</li>
+            <li>Title</li>
+            <li>Artist</li>
+            <li>Lyrics</li>
+            <li>Genre</li>
+        </ul>
+    <h2>Search</h2>
+        <form id="searching" method="POST" action='/'>
+            <label for="searchItem">Search:</label>
+                <input type="text" id="searchItem"/>
+            <label for="specificField">Field:</label>
+                <input type="text" id="specificField"/>
+            <button type="submit" class="button">Submit</button>
+        </form>
+    </section>
+    <section id="results">
+        <h2>Results</h2>
+        <div id="titles">
+            {{#each songsList}}
+                <a href="/song/{{songsList.id}}">Title: {{songsList.title}}</a>
+            <!--null/no results-->
+            {{else}}
+                <p>No items match the criteria.</p>
+            {{/each}}
+        </div>
+    </section>
+</div>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="/public/js/search.js"></script>
