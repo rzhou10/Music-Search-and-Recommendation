@@ -82,7 +82,7 @@ li {
     color: black;
     display: block;
 }
-.searchContainer, .favorites, .userDetails, .history {
+.searchContainer, .favorites, .history, .userDetails {
     margin-left: 210px; /* Same width as the sideNavigation + left position in px */
     margin-right: 210px;
     padding: 0px 10px;

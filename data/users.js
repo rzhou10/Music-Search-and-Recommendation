@@ -17,8 +17,8 @@ const exportedMethods = {
                 {firstName: firstName,
                 lastName: lastName,
                 email: email,
-                favories: null,
-                history: null}
+                favorites: [],
+                history: []}
             };
             
             let users = await UsersCollection;
