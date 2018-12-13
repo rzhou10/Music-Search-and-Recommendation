@@ -14,7 +14,6 @@
     <a href="/account/logout">Logout</a>
 </div>
 <div class="searchContainer">
-    <p>Welcome to your account!</p>
     <!--Search bar-->
     <section id="getStuff">
         <p>You can search by the items below, or enter "All" to check any field</p>
@@ -24,25 +23,22 @@
             <li>Artist</li>
             <li>Lyrics</li>
             <li>Genre</li>
+            <li>History</li>
+            <li>Favorites</li>
         </ul>
     <h2>Search</h2>
         <form id="searching" method="POST" action='/'>
             <label for="searchItem">Search:</label>
-                <input type="text" id="searchItem"/>
+                <input type="text" name="searchItem" id="searchItem"/>
             <label for="specificField">Field:</label>
-                <input type="text" id="specificField"/>
+                <input type="text" name="specificField" id="specificField"/>
             <button type="submit" class="button">Submit</button>
         </form>
     </section>
     <section id="results">
         <h2>Results</h2>
-        <div id="titles">
-            {{#each songsList}}
-                <a href="/song/{{songsList.id}}">Title: {{songsList.title}}</a>
-            <!--null/no results-->
-            {{else}}
-                <p>No items match the criteria.</p>
-            {{/each}}
+        <div id="resultList">
+            
         </div>
     </section>
 </div>
