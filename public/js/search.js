@@ -25,7 +25,7 @@
                 $('form :input[name="searchItem"]').focus();
             }
 
-            if ((newField.match("Title")) || (newField.match("Artist")) || (newField.match("Lyrics")) || (newField.match("Genre")) && newItem == ""){
+            if (((newField.match("Title")) || (newField.match("Artist")) || (newField.match("Lyrics")) || (newField.match("Genre"))) && newItem == ""){
                 alert("Please enter search keyword.");
                 $('form :input[name="searchItem"]').focus();
             }
