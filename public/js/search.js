@@ -17,7 +17,7 @@
             var newItem = values['searchItem'];
             var newField = values['specificField'];
             
-            var displayResults = document.getElementById("results");
+            var displayResults = document.getElementById("resultList");
 
             //if there's stuff in the inputs
             if (newField === "All"){
@@ -31,6 +31,9 @@
                 }
 
                 $.ajax(requestConfig).then(function(responseMessage){
+                    while (displayResults.firstChild) {   
+                        displayResults.removeChild(displayResults.firstChild);
+                    }
                     for (let item of responseMessage){
                         
                         let newSong = document.createElement("a");
@@ -40,7 +43,6 @@
                         let newLi = document.createElement("li");
 
                         newLi.appendChild(newSong);
-
                         displayResults.appendChild(newLi);
                     }
                     
@@ -58,7 +60,9 @@
                 }
 
                 $.ajax(requestConfig).then(function(responseMessage){
-                    console.log(responseMessage);
+                    while (displayResults.firstChild) {   
+                        displayResults.removeChild(displayResults.firstChild);
+                    }
                     for (let item of responseMessage){
                         
                         let newSong = document.createElement("a");
