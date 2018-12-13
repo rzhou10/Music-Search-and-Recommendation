@@ -20,6 +20,7 @@ router.post("/", async(req, res) =>{
         }
         else if (item && field){
             let songsList = await songData.getSongByField(item.toLowerCase(), field.toLowerCase());
+            let songsList = await songData.getSongByField(item, field);
             res.json(songsList);
         }
     }

@@ -13,8 +13,9 @@ async function getSongByField(item, field){
     if (!field){
         throw "field is needed";
     }
+    var regex = new RegExp([item].join(""), "i");
     const songCollection = await songs();
-    const list = await songCollection.aggregate([{$match: {field : item}}]).toArray();
+    const list = await songCollection.aggregate([{$match: {[field] : regex}}]).toArray();
 
     return list;
 }
