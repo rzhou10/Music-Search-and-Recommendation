@@ -27,7 +27,7 @@ router.get("/favorites", async function(req, res, next){
             var songList = [];
             var result = true;
 
-            for(i = 0; i < favoritesList.length ; i++){
+            for(let i = 0; i < favoritesList.length ; i++){
                 const songID = favoritesList[i];
                 const song = await accountData.getSongList(songID);
                 songList.push({song_ID: songID, song_title: song.songTitle, song_albumart: song.albumart});
@@ -56,8 +56,8 @@ router.get("/history", async function(req, res, next){
             var songList = [];
             var result = true;
 
-            for(i = 0; i < historyList.length ; i++) {
-                const songID = historyList[i];
+            for(let i = 0; i < historyList.length ; i++) {
+                const songID = historyList[i]._id;
                 const song = await accountData.getSongList(songID);
                 songList.push({song_ID: songID, song_title: song.songTitle, song_albumart: song.albumart});
             }

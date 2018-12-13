@@ -17,7 +17,7 @@
             var newItem = values['searchItem'];
             var newField = values['specificField'];
             
-            var displayResults = document.getElementById("resultList");
+            var displayResults = document.getElementById("titles");
 
             //AJAX form validation
             if (newItem === "" && newField === ""){
@@ -67,7 +67,7 @@
                     for (let item of responseMessage){
                         
                         let newSong = document.createElement("a");
-                        newSong.href = "/songs/" + item.id
+                        newSong.href = "/songs/" + item._id
                         newSong.innerText = item.title;
 
                         let newLi = document.createElement("li");
@@ -95,7 +95,7 @@
                     for (let item of responseMessage){
                         
                         let newSong = document.createElement("a");
-                        newSong.href = "/songs/" + item.id
+                        newSong.href = "/songs/" + item._id
                         newSong.innerText = item.title;
                         
                         let newLi = document.createElement("li");
