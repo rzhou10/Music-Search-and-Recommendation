@@ -13,12 +13,15 @@ const exportedMethods = {
             _id: uuid.v4(),
             username: username,
             hashedPassword: bcrypt.hashSync(password, saltRounds),
-            profile:    
-                {firstName: firstName,
-                lastName: lastName,
+            profile: { 
+                first_name: firstName,
+                last_name: lastName,
+                user_id: '10',
+                imageUrl: '',
                 email: email,
                 favorites: [],
-                history: []}
+                history: []
+                }
             };
             
             let users = await UsersCollection;

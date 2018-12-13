@@ -1,19 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data");
-//const songData = data.songs;
 const accountData = data.account;
-//const asyncMiddleware = require("../public/js/asyncMiddleware");
-//const mongoCollections = require("../config/mongoCollections");
-//const songs = mongoCollections.main;
-
-/* This is for demo. Work in progress.*/
 
 router.get("/", async function(req, res, next){
     try{
-    //    if(req.session && req.session.user){
+        if(req.session.id && req.cookies.MusicCookie){
             res.render("music/account", { title: "My Account" });
-       // }
+        }
+        else {
+            res.render('music/login', { title: "Login Page" });
+        }
     }
     catch(e){
         res.status(404).json({ error: e });
@@ -22,11 +19,10 @@ router.get("/", async function(req, res, next){
 
 router.get("/favorites", async function(req, res, next){
     try{
-        //if user is in session
-        //if(req.session && req.session.user){
+        /* If user is in session, it gets the favorites list of the user. */
+        if(req.session.id && req.cookies.MusicCookie){
 
-            /* Demo with hardcoded user. Gets the favorites list of the user. This user is present in backbone database. */
-            const username = "stressedstraus";
+            const username = req.session.user.username;
             const favoritesList = await accountData.getAllFavorites(username);
             var songList = [];
             var result = true;
@@ -40,10 +36,10 @@ router.get("/favorites", async function(req, res, next){
                 result = false;
             }
             res.render("music/favorites", { title: "Favorites" , result: result, songList: songList }); 
-        //}
-        //else {
-        //    res.render('music/login', { title: "Login Page" });
-       // }
+        }
+        else {
+            res.render('music/login', { title: "Login Page" });
+        }
     }
     catch(e){
         res.status(404).json({ error: e });
@@ -52,11 +48,10 @@ router.get("/favorites", async function(req, res, next){
 
 router.get("/history", async function(req, res, next){
     try{
-        //if user is in session
-        //if(req.session && req.session.user){
+        /* If user is in session, it gets the search history of the user. */
+        if(req.session.id && req.cookies.MusicCookie){
 
-            /* Demo with hardcoded user. Gets the favorites list of the user. This user is not present in backbone database. I registered as new user */
-            const username = "jsamuel";
+            const username = req.session.user.username;
             const historyList = await accountData.getAllHistory(username);
             var songList = [];
             var result = true;
@@ -70,20 +65,42 @@ router.get("/history", async function(req, res, next){
                 result = false;
             }
             res.render("music/history", { title: "History", result: result, songList: songList });
-        //}
-        //else {
-        //    res.render('music/login', { title: "Login Page" });
-       // }
+        }
+        else {
+            res.render('music/login', { title: "Login Page" });
+       }
     }
     catch(e){
         res.status(404).json({ error: e });
     }  
 });
 
-router.get("/logout", async function(req, res, next){
+router.get("/user", (req, res) => {
     try{
-        //destroy session and cookie
-         res.render("music/logout", {title: "Logout Page"} );
+        /* If user is in session, it will display the user details. */
+        if(req.session.id && req.cookies.MusicCookie){
+            const userDetails = request.session.user;
+            console.log(userDetails);
+            res.render('music/userProfile', { title: "User Profile", userDetails: userDetails });
+        } else {
+            res.render('music/login', { title: "Login Page" });
+        }
+    }
+    catch(e){
+        res.status(404).json({ error: e });
+    }
+});
+
+router.get("/logout", function(req, res){
+    try{
+        /* Destroying the session and cookie on Logout. */
+        if(req.session.id && req.cookies.MusicCookie){
+            req.session.destroy();
+            res.clearCookie('MusicCookie');
+            res.clearCookie('connect.sid');
+            //res.send("You've logged out successfully.");
+            res.render("music/logout", {title: "Logout Page"} );
+        }
     }
     catch(e){
         res.status(404).json({ error: e });
