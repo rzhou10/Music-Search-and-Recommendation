@@ -1,6 +1,6 @@
 <div class = 'header'>
     <header>
-        <h1>Profile</h1>
+        <h1>User Profile</h1>
     </header>
 </div>
 <!--Side Navigation-->
@@ -9,16 +9,16 @@
     <a href="/account/favorites">Favorites</a>
     <a href="/account/history">History</a>
     <a href="/recommendations">Recommendations</a>
-    <a class = "active" href="/user">Profile</a>
+    <a class = "active" href="/account/user">Profile</a>
     <a href="/settings">Settings</a>
     <a href="/account/logout">Logout</a>
 </div>
 <!--Will display user profile here. This is just for demo. Someone else is working on this part.-->
 <div class = "userDetails">
     <h2>User Information</h2>
-    <p>User Id: {{userDetails._id}} </p>
+    <p>User Id: {{userDetails.profile.user_id}} </p>
     <p>username: {{userDetails.username}} </p>
-    <p>Firt Name: {{userDetails.firstName}} </p>
-    <p>Last Name: {{userDetails.lastName}} </p>
-    <p>E-mail: {{userDetails.email}} </p>
+    <p>Firt Name: {{userDetails.profile.first_name}} </p>
+    <p>Last Name: {{userDetails.profile.last_name}} </p>
+    <p>E-mail: {{userDetails.profile.email}} </p>
 </div>

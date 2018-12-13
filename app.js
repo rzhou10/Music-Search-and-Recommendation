@@ -1,10 +1,14 @@
 const express = require("express");
 const app = express();
-const static = express.static(__dirname + "/public");
-const configRoutes = require("./routes");
-const cookieParser = require("cookie-parser");
+
 const bodyParser = require("body-parser");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+
+const configRoutes = require("./routes");
 const exphbs = require("express-handlebars");
+
+const static = express.static(__dirname + "/public");
 
 const handlebarsInstance = exphbs.create({
     defaultLayout: "main",
@@ -33,10 +37,14 @@ const morgan = require('morgan');
 app.use(morgan('dev'));
 
 app.use("/public", static);
-app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
+app.use(cookieParser());
+app.use(session({
+  secret: "secretKey",
+  resave: true,
+  saveUninitialized: false
+}));
 app.use(rewriteUnsupportedBrowserMethods);
 app.engine("handlebars", handlebarsInstance.engine);
 app.set('views', __dirname + '/views');
