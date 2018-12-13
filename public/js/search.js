@@ -19,6 +19,36 @@
             
             var displayResults = document.getElementById("resultList");
 
+            //AJAX form validation
+            if (newItem === "" && newField === ""){
+                alert("Please enter search keyword.");
+                $('form :input[name="searchItem"]').focus();
+            }
+
+            if ((newField.match("Title")) || (newField.match("Artist")) || (newField.match("Lyrics")) || (newField.match("Genre")) && newItem == ""){
+                alert("Please enter search keyword.");
+                $('form :input[name="searchItem"]').focus();
+            }
+
+            if (newField === "" && newItem.match(/[A-Za-z0-9]/g)){
+                alert("Please enter search field.");
+                $('form :input[name="specificField"]').focus();
+            }
+            
+            if (newItem.match(/^\W|_/) || newField.match(/^\W|_/)){
+                alert("Please input valid search details.");
+                $('form :input[name="searchItem"]').val("");
+                $('form :input[name="specificField"]').val("");
+                $('form :input[name="searchItem"]').focus();
+            }
+
+            if (newField == "all" || newField == "ALL"){
+                alert("Please input valid search details. Search Field is case-sensitive.");
+                $('form :input[name="searchItem"]').val("");
+                $('form :input[name="specificField"]').val("");
+                $('form :input[name="specificField"]').focus();
+            }
+
             //if there's stuff in the inputs
             if (newField === "All"){
                 let requestConfig = {
@@ -44,11 +74,10 @@
 
                         newLi.appendChild(newSong);
                         displayResults.appendChild(newLi);
-                    }
-                    
+                    } 
                 });
             }
-            else{
+            else {
                 let requestConfig = {
                     method: "POST",
                     url: "/",
@@ -75,7 +104,7 @@
 
                         displayResults.appendChild(newLi);
                     }
-                });
+               });
             }
         });
     }
