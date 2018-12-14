@@ -16,7 +16,7 @@ const exportedMethods = {
             profile: { 
                 first_name: firstName,
                 last_name: lastName,
-                user_id: '10',
+                user_id: uuid.v4(),
                 imageUrl: '',
                 email: email,
                 favorites: [],
