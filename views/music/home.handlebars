@@ -3,14 +3,16 @@
 </div>
 <div class="searchContainer">
     <!--Account stuff-->
-    <button onclick="location.href='/login'" type="submit">Login</button>   
-    <button onclick="location.href='/registration'" type="submit">Register</button>
+    <div class="logReg">
+        <button onclick="location.href='/login'" type="submit">Login</button>
+        <button onclick="location.href='/registration'" type="submit">Register</button>
+    </div>
     <p>
         Welcome! Search for any song that you'd like to know more information about. To save any songs that you'd like please log in or sign up for an account.
     </p>
     <!--Search bar-->
     <section id="getStuff">
-        <p>You can search by the items below, or enter "All" to check any field</p>
+        <p>You can search by the items below, or enter "All" to get every song.</p>
         <ul>
             <li>All</li>
             <li>Title</li>
@@ -30,7 +32,9 @@
     <section id="results">
         <h2>Results</h2>
         <div id="resultList">
-            
+            <ul id="titles">
+
+            </ul>
         </div>
     </section>
 </div>
