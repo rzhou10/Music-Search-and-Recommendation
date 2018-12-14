@@ -57,7 +57,7 @@ router.get("/history", async function(req, res, next){
             var result = true;
 
             for(let i = 0; i < historyList.length ; i++) {
-                const songID = historyList[i]._id;
+                const songID = historyList[i];
                 const song = await accountData.getSongList(songID);
                 songList.push({song_ID: songID, song_title: song.songTitle, song_albumart: song.albumart});
             }
