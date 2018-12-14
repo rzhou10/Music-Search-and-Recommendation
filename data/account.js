@@ -5,7 +5,7 @@ const songs = mongoCollections.main;
 const exportedMethods = {
 
     async getAllFavorites(username) {
-        if (!username) throw "Please provide user id.";
+        if (!username) throw "Please provide username.";
 
         const usersCollection = await users();
         const userDetails = await usersCollection.findOne({ username: username });
@@ -27,7 +27,7 @@ const exportedMethods = {
     },
 
     async getAllHistory(username) {
-        if (!username) throw "Please provide user id.";
+        if (!username) throw "Please provide username.";
 
         const usersCollection = await users();
         const userDetails = await usersCollection.findOne({ username: username });
@@ -35,6 +35,23 @@ const exportedMethods = {
 
         return historyList;
     },
+
+    async updateHistory(username, song_id) {
+        if (!username) throw "Please provide username.";
+        if (!song_id) throw "Please search for song first.";
+
+        const usersCollection = await users();
+        const userDetails = await usersCollection.findOne({ username: username });
+        const historyList = userDetails.profile.history;
+        
+        for (var i = 0; i < song_id.length; i++){
+            historyList.push(song_id[i]);
+        }
+        
+        //console.log(historyList);
+        await usersCollection.findAndModify({ username: username }, { $set: { "profile.history.$": historyList }});
+        return await this.getAllHistory(username);
+    }
 };
 
 module.exports = exportedMethods;
