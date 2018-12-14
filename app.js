@@ -42,8 +42,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(session({
   secret: "secretKey",
-  secure: true,
-  httpOnly: true,
   resave: true,
   saveUninitialized: false
 }));
