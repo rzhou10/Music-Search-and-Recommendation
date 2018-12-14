@@ -2,19 +2,57 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const accountData = data.account;
+const songData = data.song;
 
-router.get("/", async function(req, res, next){
+function checkSignIn (req, res, next){
+    if(req.session.id && req.cookies.MusicCookie){
+        res.render("music/account", { title: "My Account" });
+    } else {
+        next();
+    }
+}
+
+router.get("/", checkSignIn, async function(req, res, next){
     try{
-        if(req.session.id && req.cookies.MusicCookie){
-            res.render("music/account", { title: "My Account" });
-        }
-        else {
             res.render('music/login', { title: "Login Page" });
-        }
     }
     catch(e){
         res.status(404).json({ error: e });
     }  
+});
+
+router.post("/", async function(req, res, next) {
+    try{
+        if (req.session.id && req.cookies.MusicCookie){
+            const item = req.body.searchItem;
+            const field = req.body.specificField;
+
+            let username = req.session.user.username;
+
+            console.log(username);
+            console.log(item);
+            console.log(field);
+
+            //renders of "All" was selected, no need for item field.
+            if (field === "All"){
+                let songsList = await songData.getAllSongs();
+                var song_id = songsList.song_id;
+                console.log(song_id);
+                await accountData.updateHistory(username, song_id);
+                res.json(songsList);
+            }
+            else if (item && field){
+                let songsList = await songData.getSongByField(item.toLowerCase(), field.toLowerCase());
+                var song_id = songsList.song_id;
+                console.log(song_id);
+                await accountData.updateHistory(username, song_id);
+                res.json(songsList);
+            }
+        }
+    }
+    catch (e){
+        res.status(404).json({ error: e });
+    }
 });
 
 router.get("/favorites", async function(req, res, next){
