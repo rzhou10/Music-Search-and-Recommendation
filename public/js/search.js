@@ -65,7 +65,6 @@
                         displayResults.removeChild(displayResults.firstChild);
                     }
                     for (let item of responseMessage){
-                        
                         let newSong = document.createElement("a");
                         newSong.href = "/songs/" + item._id
                         newSong.innerText = item.title;
@@ -93,7 +92,6 @@
                         displayResults.removeChild(displayResults.firstChild);
                     }
                     for (let item of responseMessage){
-                        
                         let newSong = document.createElement("a");
                         newSong.href = "/songs/" + item._id
                         newSong.innerText = item.title;
