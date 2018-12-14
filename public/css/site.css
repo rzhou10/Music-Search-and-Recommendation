@@ -95,3 +95,11 @@ li {
     background-color: #555;
     color: white;
 }
+.logReg{
+    width: 9%;
+    position: fixed;
+    left: 10px;
+    background: #008b00;
+    padding: 3px;
+    margin: 10px;
+}
