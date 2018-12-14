@@ -18,7 +18,18 @@
             for (let item of responseMessage){
                 
                 let rev = document.createElement("p");
-                rev.innerText = "User " + item.user_id + ": \n\t" + item.comment + "\n\tRating: " + item.rating;
+                let ratingStars = "";
+                var r;
+                for (r=1; r<= parseInt(item.rating); r++) {
+                    console.log("ratingStars");
+                    ratingStars += "★";
+                }
+                while (r<=5) {
+                    ratingStars += "☆";
+                    r++;
+                }
+                rev.innerText = "User " + item.user_id + ": " + ratingStars + "\n\t" + item.comment;
+
                 let newLi = document.createElement("li");
                 newLi.appendChild(rev);
                 detailsList.appendChild(newLi);
