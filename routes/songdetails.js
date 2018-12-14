@@ -4,7 +4,7 @@ const data = require("../data");
 const songData = data.songs;
 
 router.get("/:id", async function(req, res, next){
-    console.log("id = " + req.params.id);
+    //console.log("id = " + req.params.id);
     var objID = req.params.id;
     try{
         const songDetails = await songData.getSongByID(objID);
@@ -50,9 +50,9 @@ router.post("/addReview", async(req, res) =>{
         const song_id = req.body.song_id;
         const comment = req.body.comment;
         const rating = req.body.rating;
-        const user_id = req.body.user_id;
+        const username = req.body.username;
         
-        let review = await songData.addReview(song_id, comment, rating, user_id);
+        let review = await songData.addReview(song_id, comment, rating, username);
         res.json(review);
     }
     catch (e){
