@@ -117,7 +117,7 @@ router.get("/user", (req, res) => {
     try{
         /* If user is in session, it will display the user details. */
         if(req.session.id && req.cookies.MusicCookie){
-            const userDetails = request.session.user;
+            const userDetails = req.session.user;
             console.log(userDetails);
             res.render('music/userProfile', { title: "User Profile", userDetails: userDetails });
         } else {
