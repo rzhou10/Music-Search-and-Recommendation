@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const accountData = data.account;
-const songData = data.song;
+const songData = data.songs;
 
 function checkSignIn (req, res, next){
     if(req.session.id && req.cookies.MusicCookie){
@@ -117,7 +117,6 @@ router.get("/user", (req, res) => {
     try{
         /* If user is in session, it will display the user details. */
         if(req.session.id && req.cookies.MusicCookie){
-            
             const userDetails = req.session.user; 
             res.render('music/userProfile', { title: "User Profile", userDetails: userDetails });
         } else {
