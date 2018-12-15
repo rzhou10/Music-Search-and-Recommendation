@@ -133,51 +133,9 @@ router.get("/history", async function (req, res, next) {
     }
 });
 
-router.get("/user", (req, res) => {
-    try {
-        /* If user is in session, it will display the user details. */
-        if (req.session.id && req.cookies.MusicCookie) {
-
-            const userDetails = req.session.user;
-
-            res.render('music/userProfile', {
-                title: "User Profile",
-                userDetails: userDetails
-            });
-        } else {
-            res.render('music/login', {
-                title: "Login Page"
-            });
-        }
-    } catch (e) {
-        res.status(404).json({
-            error: e
-        });
-    }
-});
-
-router.get("/logout", function (req, res) {
-    try {
-        /* Destroying the session and cookie on Logout. */
-        if (req.session.id && req.cookies.MusicCookie) {
-            req.session.destroy();
-            res.clearCookie('MusicCookie');
-            res.clearCookie('connect.sid');
-
-            res.render("music/logout", {
-                title: "Logout Page"
-            });
-        }
-    } catch (e) {
-        res.status(404).json({
-            error: e
-        });
-    }
-});
-
 router.get("/recommendations", async function (req, res, next) {
     try {
-        /* If user is in session, it gets the favorites list of the user. */
+        /* If user is in session, it gets the recommendation list of the user. */
         if (req.session.id && req.cookies.MusicCookie) {
 
             const username = req.session.user.username;
@@ -298,4 +256,47 @@ router.get("/recommendations", async function (req, res, next) {
         });
     }
 });
+
+router.get("/user", (req, res) => {
+    try {
+        /* If user is in session, it will display the user details. */
+        if (req.session.id && req.cookies.MusicCookie) {
+
+            const userDetails = req.session.user;
+
+            res.render('music/userProfile', {
+                title: "User Profile",
+                userDetails: userDetails
+            });
+        } else {
+            res.render('music/login', {
+                title: "Login Page"
+            });
+        }
+    } catch (e) {
+        res.status(404).json({
+            error: e
+        });
+    }
+});
+
+router.get("/logout", function (req, res) {
+    try {
+        /* Destroying the session and cookie on Logout. */
+        if (req.session.id && req.cookies.MusicCookie) {
+            req.session.destroy();
+            res.clearCookie('MusicCookie');
+            res.clearCookie('connect.sid');
+
+            res.render("music/logout", {
+                title: "Logout Page"
+            });
+        }
+    } catch (e) {
+        res.status(404).json({
+            error: e
+        });
+    }
+});
+
 module.exports = router;
