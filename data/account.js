@@ -1,6 +1,8 @@
 const mongoCollections = require("../config/mongoCollections");
 const users = mongoCollections.users;
 const songs = mongoCollections.main;
+const data = require("../data");
+const songData = data.songs;
 
 const exportedMethods = {
 
@@ -39,19 +41,18 @@ const exportedMethods = {
     async updateHistory(username, song_id) {
         if (!username) throw "Please provide username.";
         if (!song_id) throw "Please search for song first.";
-
+    
         const usersCollection = await users();
         const userDetails = await usersCollection.findOne({ username: username });
-        const historyList = userDetails.profile.history;
+        var historyList = userDetails.profile.history;
         
         for (var i = 0; i < song_id.length; i++){
             historyList.push(song_id[i]);
         }
-        
-        //console.log(historyList);
-        await usersCollection.findAndModify({ username: username }, { $set: { "profile.history.$": historyList }});
-        return await this.getAllHistory(username);
+    
+        await usersCollection.update({ username: username }, { $set: { 'profile.history': historyList }});
+        return await this.getAllHistory();
     }
-};
+}
 
 module.exports = exportedMethods;

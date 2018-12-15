@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const songData = data.songs;
+const xss = require("xss");
 
 router.get("/:id", async function(req, res, next){
-    //console.log("id = " + req.params.id);
     var objID = req.params.id;
     try{
         const songDetails = await songData.getSongByID(objID);
@@ -23,10 +23,6 @@ router.get("/:id", async function(req, res, next){
                                         genre: songDetails.genre, searchCount: songDetails.searchCount,
                                         lyrics: songDetails.lyrics });
 
-
-        if(req.session.id && req.cookies.MusicCookie){
-            
-        }
     }
     catch(e){
         res.status(404).json({ error: e });
@@ -35,7 +31,7 @@ router.get("/:id", async function(req, res, next){
 
 router.post("/getReviews", async(req, res) =>{
     try{
-        const _id = req.body._id;
+        const _id = xss(req.body._id);
 
         let reviewList = await songData.getSongReviews(_id);
         res.json(reviewList);
@@ -47,10 +43,10 @@ router.post("/getReviews", async(req, res) =>{
 
 router.post("/addReview", async(req, res) =>{
     try{
-        const song_id = req.body.song_id;
-        const comment = req.body.comment;
-        const rating = req.body.rating;
-        const username = req.body.username;
+        const song_id = xss(req.body.song_id);
+        const comment = xss(req.body.comment);
+        const rating = xss(req.body.rating);
+        const username = xss(req.body.username);
         
         let review = await songData.addReview(song_id, comment, rating, username);
         res.json(review);
