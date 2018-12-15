@@ -10,7 +10,7 @@
   "author": "Anastasia Fasolia (CWID - 10432254), Tulsi Patel (CWID - 10440620), Bhumika Patoliya (CWID - 10432870), Ravi Rathore (CWID - 10442973), Renjie Zhou (CWID - 10396229)",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^3.0.2",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.4",

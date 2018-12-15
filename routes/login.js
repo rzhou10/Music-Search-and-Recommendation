@@ -3,7 +3,7 @@ const router = express.Router();
 const asyncMiddleware = require("../public/js/asyncMiddleware");
 const mongoCollections = require("../config/mongoCollections");
 const Users = mongoCollections.users;
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const xss = require("xss");
 
 router.get('/', function(req, res, next){

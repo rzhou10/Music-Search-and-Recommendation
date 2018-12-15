@@ -1,0 +1,30 @@
+<div class='header'>
+    <header>
+        <h1>Recommendations</h1>
+    </header>
+</div>
+<!--Side Navigation-->
+<div class="sideNavigation">
+    <a href="/account">My Account</a>
+    <a href="/account/favorites">Favorites</a>
+    <a href="/account/history">History</a>
+    <a class="active" href="account/recommendations">Recommendations</a>
+    <a href="/account/user">Profile</a>
+    <a href="/settings">Settings</a>
+    <a href="/account/logout">Logout</a>
+</div>
+<!--Displays user's Favorites list here.-->
+<div class="favorites">
+    <h2>Your Recommendations List</h2>
+    {{#if result}}
+    <ul>
+        {{#each songList}}
+        <li>
+            <h3>Title: {{this.song_title}}</h3>
+        </li> <img src="{{this.song_albumart}}" alt="{{this.song_title}}">
+        {{/each}}
+        {{else}}
+        <li>No recommendations for now.</li>
+    </ul>
+    {{/if}}
+</div>
