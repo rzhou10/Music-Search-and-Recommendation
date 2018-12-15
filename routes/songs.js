@@ -2,6 +2,7 @@ const data = require("../data");
 const express = require("express");
 const router = express.Router();
 const songData = data.songs;
+const xss = require("xss");
 
 router.get("/", async(req, res) =>{
     res.render("music/home");
@@ -10,8 +11,8 @@ router.get("/", async(req, res) =>{
 // renders with items searched
 router.post("/", async(req, res) =>{
     try{
-        const item = req.body.searchItem;
-        const field = req.body.specificField;
+        const item = xss(req.body.searchItem);
+        const field = xss(req.body.specificField);
 
         //renders of "All" was selected, no need for item field.
         if (field === "All"){

@@ -5,6 +5,7 @@ const mongoCollections = require("../config/mongoCollections");
 const Users = mongoCollections.users;
 const data = require("../data");
 const usersData = data.users;
+const xss = require("xss");
 
 router.get('/', function(req, res, next){
     if(req.session && req.session.user){
@@ -15,17 +16,14 @@ router.get('/', function(req, res, next){
 });
 
 router.post('/', asyncMiddleware(async (req, res, next) => {
-    const username = req.body.username,
-        firstName = req.body.firstName,
-        lastName = req.body.lastName,
-        email = req.body.email,
-        password = req.body.password;
-    console.log(username);
+    const username = xss(req.body.username),
+        firstName = xss(req.body.firstName),
+        lastName = xss(req.body.lastName),
+        email = xss(req.body.email),
+        password = xss(req.body.password);
     // get all users from db
     const allUsers = await Users();
-    //console.log(allUsers);
     const newUser = await allUsers.findOne({ username: username });
-    console.log(newUser);
     if(newUser){
         return res.status(401).render('music/registration', {message: "User Already Exists! Login or choose another Username"});
     }

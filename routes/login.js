@@ -4,6 +4,7 @@ const asyncMiddleware = require("../public/js/asyncMiddleware");
 const mongoCollections = require("../config/mongoCollections");
 const Users = mongoCollections.users;
 const bcrypt = require("bcrypt");
+const xss = require("xss");
 
 router.get('/', function(req, res, next){
     if(req.session.id && req.cookies.MusicCookie){
@@ -14,25 +15,25 @@ router.get('/', function(req, res, next){
 });
 
 router.post('/', asyncMiddleware(async (req, res, next) => {
-    const username = req.body.username,
-        password = req.body.password;
-    // get all users from db
+    const username = xss(req.body.username),
+        password = xss(req.body.password);
+    
     const allUsers = await Users();
-    // check if entered username exists in db 
+    
     const user = await allUsers.findOne({ username: username });
-    // if username doesn't exist in the db show error
+    
     if(!user) {
         return res.status(401).render('music/login', {message: "The username provided is invalid. Please provide a valid username."});
     }
-    // check password
+    
     const isMatch = await bcrypt.compare(password, user.hashedPassword);
-    // if entered password doesn't match the one in the db show error
+    
     if(!isMatch) {
         return res.status(401).render('music/login', {message: "The password provided is invalid. Please enter a valid password."});
     }
     // sets a cookie with the user's info
     if (user.username === username && isMatch === true) {
-        res.cookie('MusicCookie', req.body.username);
+        res.cookie('MusicCookie', username);
         req.session.user = user;
         res.redirect('/account/');
     }
