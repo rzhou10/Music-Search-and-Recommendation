@@ -24,4 +24,4 @@ Renjie Zhou
 4. Extract backbone.zip to a particular path and then use this command to seed in the data into your mongoDB, 
   `mongorestore -d backbone dbpath`. where dbpath is the path to the folder where the bson files are located.
 5. Go to localhost:3000 to view the website.
-6. For the testing purposed, use the username: tulsip and password: darknight. Or you can create one for yourself.
+6. For the testing purposed, use the username: tulsip and password: darknight Or you can create one for yourself.
