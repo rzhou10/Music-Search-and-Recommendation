@@ -5,8 +5,8 @@
 </div>
 <!--Side Navigation-->
 <div class="sideNavigation">
-    <h3>{{title}}</h3>
-    <img src={{imgsrc}} width="184">
+    <h2>{{title}}</h2>
+    <img src={{imgsrc}} width="184" alt="{{title}}">
 </div>
 <div class="songDetails">
     <!--Search bar-->
@@ -20,16 +20,16 @@
             <li><br></li>
             <li class="lyrics"><b>Reviews: </b> {{reviews}}</li>
         </ul>
-    <h2>Add Review</h2>
         <form name="addReview" id="addReview" method="POST" action='/'>
-            <input type="text" name="reviewText" id="reviewText"/>
-            <select name="rating" id="rating">
-                <option value="5">5 Stars</option>
-                <option value="4">4 Stars</option>
-                <option value="3">3 Stars</option>
-                <option value="2">2 Stars</option>
-                <option value="1">1 Stars</option>
-            </select>
+            <label for="reviewText" class="songLabel">Add Review</label>
+                <input type="text" name="reviewText" id="reviewText"/>
+                <select name="rating" id="rating">
+                    <option value="5">5 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="2">2 Stars</option>
+                    <option value="1">1 Stars</option>
+                </select>
             <button type="submit" class="button">Submit</button>
         </form>
     </section>
