@@ -21,7 +21,7 @@ router.get("/", checkSignIn, async function(req, res, next){
         res.status(404).json({ error: e });
     }  
 });
-
+/*
 router.post("/", async function(req, res, next) {
     try{
         if (req.session.id && req.cookies.MusicCookie){
@@ -49,7 +49,7 @@ router.post("/", async function(req, res, next) {
         res.status(404).json({ error: e });
     }
 });
-
+*/
 router.get("/favorites", async function(req, res, next){
     try{
         /* If user is in session, it gets the favorites list of the user. */
@@ -112,7 +112,9 @@ router.get("/user", (req, res) => {
     try{
         /* If user is in session, it will display the user details. */
         if(req.session.id && req.cookies.MusicCookie){
+
             const userDetails = xss(req.session.user); 
+
             res.render('music/userProfile', { title: "User Profile", userDetails: userDetails });
         } else {
             res.render('music/login', { title: "Login Page" });
