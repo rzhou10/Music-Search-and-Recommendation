@@ -74,21 +74,35 @@ async function getmaxreviewid() {
 
 async function addReview(song_id, comment, rating, username){
     if (!song_id){
-        throw "item is needed";
+        throw "song_id is needed";
     }
 
-    var ObjectId = require('mongodb').ObjectID;
-    const songCollection = await songs();
+    var async = require('async'),
+        mongo = require('mongodb'),
+        ObjectID = mongo.ObjectID;
+
     const reviewsCollection = await reviews();
+    var max_review = await reviewsCollection.find().sort({review_id:-1}).limit(1).toArray();
+    var max_review_id = 1;
+    if (max_review) {
+        max_review_id = max_review[0].review_id + 1;
+    }
+
     const usersCollection = await users();
+    let user = await usersCollection.findOne({ "username" : username});
+    let uid = user.profile.user_id;
 
+    if (uid) {
+        await reviewsCollection.insertOne(
+            { _id: new ObjectID(), comment:comment, rating: parseInt(rating), user_id:uid, review_id:max_review_id} );
 
-    //var max_review = await getmaxreviewid();
-    //console.log(max_review.toArray());
-    //let user = await usersCollection.findOne({ "username" : username});
-
-    const review = await reviewsCollection.insertOne(
-        { _id: uuid.v4(), comment:comment, rating: parseInt(rating), username:username, review_id:4444} );
+        var ObjectId = require('mongodb').ObjectID;
+        const songCollection = await songs();
+        await songCollection.updateOne(
+            { "_id": new ObjectId(song_id) },
+            { $push: { "reviews": max_review_id } }
+        );
+    }
     return {comment:comment, rating: parseInt(rating), username:username};
 }
 

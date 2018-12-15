@@ -6,14 +6,13 @@
         var song_id = url.substring(url.lastIndexOf('/') + 1);
         //console.log("id = " + song_id);
 
-        let cookie = document.cookie;
+        let allcookies = document.cookie;
         let currentUser = undefined;
-        cookie = cookie.split(`;`);
+        let cookies = allcookies.split(";");
 
-        cookie.forEach((ea, i) => {
-        //give the = some space
-            cookiesplit = ea.split("=");
-            if (cookiesplit[0] == "MusicCookie") {
+        cookies.forEach((ea, i) => {
+            let cookiesplit = ea.split('=');
+            if (cookiesplit[0] === " MusicCookie" || cookiesplit[0] === "MusicCookie") {
                 currentUser = cookiesplit[1];
                 //console.log("current user = " + currentUser);
             }
