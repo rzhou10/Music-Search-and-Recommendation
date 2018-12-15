@@ -21,4 +21,6 @@ Renjie Zhou
 1. Clone/download this repository
 2. Install all dependencies (make sure you have mongodb and node.js)
 3. Run with `npm start`.
+4. Extract backbone.zip to a particular path and then use this command to seed in the data into your mongoDB, 
+  `mongorestore -d backbone dbpath`. where dbpath is the path to the folder where the bson files are located.
 4. Go to localhost:3000 to view the website.
