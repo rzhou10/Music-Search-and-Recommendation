@@ -1,0 +1,38 @@
+<div class = 'header'>
+    <header>
+        <h1>{{title}}</h1>
+    </header>
+</div>
+<!--Side Navigation-->
+<div class="sideNavigation">
+    <h3>{{title}}</h3>
+    <img src={{imgsrc}} width="184">
+</div>
+<div class="songDetails">
+    <!--Search bar-->
+    <section id="getStuff" class="songDetailsList">
+        <ul id="detailsList" name="detailsList">
+            <li><b>Genre: </b><br>{{genre}}<br></li>
+            <li><br></li>
+            <li><b>Artist: </b><br> {{artist}}<br></li>
+            <li><br></li>
+            <li class="lyrics"><b>Lyrics: </b><br> {{lyrics}}</li>
+            <li><br></li>
+            <li class="lyrics"><b>Reviews: </b> {{reviews}}</li>
+        </ul>
+    <h2>Add Review</h2>
+        <form name="addReview" id="addReview" method="POST" action='/'>
+            <input type="text" name="reviewText" id="reviewText"/>
+            <select name="rating" id="rating">
+                <option value="5">5 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="2">2 Stars</option>
+                <option value="1">1 Stars</option>
+            </select>
+            <button type="submit" class="button">Submit</button>
+        </form>
+    </section>
+</div>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="/public/js/reviews.js"></script>

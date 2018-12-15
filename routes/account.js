@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data");
+const xss = require("xss");
 const accountData = data.account;
 const songData = data.songs;
 
@@ -14,19 +15,47 @@ function checkSignIn (req, res, next){
 
 router.get("/", checkSignIn, async function(req, res, next){
     try{
-            res.render('music/login', { title: "Login Page" });
+        res.render('music/login', { title: "Login Page" });
     }
     catch(e){
         res.status(404).json({ error: e });
     }  
 });
+/*
+router.post("/", async function(req, res, next) {
+    try{
+        if (req.session.id && req.cookies.MusicCookie){
+            const item = xss(req.body.searchItem);
+            const field = xss(req.body.specificField);
 
+            let username = xss(req.session.user.username);
+
+            //renders if "All" was selected, no need for item field.
+            if (field === "All"){
+                let songsList = await songData.getAllSongs();
+                var song_id = songsList.song_id;
+                await accountData.updateHistory(username, song_id);
+                res.json(songsList);
+            }
+            else if (item && field){
+                let songsList = await songData.getSongByField(item.toLowerCase(), field.toLowerCase());
+                var song_id = songsList.song_id;
+                await accountData.updateHistory(username, song_id);
+                res.json(songsList);
+            }
+        }
+    }
+    catch (e){
+        res.status(404).json({ error: e });
+    }
+});
+*/
 router.get("/favorites", async function(req, res, next){
     try{
         /* If user is in session, it gets the favorites list of the user. */
         if(req.session.id && req.cookies.MusicCookie){
 
-            const username = req.session.user.username;
+            const username = xss(req.session.user.username);
             const favoritesList = await accountData.getAllFavorites(username);
             var songList = [];
             var result = true;
@@ -55,7 +84,7 @@ router.get("/history", async function(req, res, next){
         /* If user is in session, it gets the search history of the user. */
         if(req.session.id && req.cookies.MusicCookie){
 
-            const username = req.session.user.username;
+            const username = xss(req.session.user.username);
             const historyList = await accountData.getAllHistory(username);
             var songList = [];
             var result = true;
@@ -84,7 +113,8 @@ router.get("/user", (req, res) => {
         /* If user is in session, it will display the user details. */
         if(req.session.id && req.cookies.MusicCookie){
 
-            const userDetails = req.session.user; 
+            const userDetails = xss(req.session.user); 
+
             res.render('music/userProfile', { title: "User Profile", userDetails: userDetails });
         } else {
             res.render('music/login', { title: "Login Page" });
@@ -102,7 +132,7 @@ router.get("/logout", function(req, res){
             req.session.destroy();
             res.clearCookie('MusicCookie');
             res.clearCookie('connect.sid');
-            //res.send("You've logged out successfully.");
+            
             res.render("music/logout", {title: "Logout Page"} );
         }
     }

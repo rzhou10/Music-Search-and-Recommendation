@@ -82,10 +82,13 @@ li {
     color: black;
     display: block;
 }
-.searchContainer, .favorites, .history, .userDetails {
+.searchContainer, .favorites, .history, .userDetails, .songDetails{
     margin-left: 210px; /* Same width as the sideNavigation + left position in px */
     margin-right: 210px;
     padding: 0px 10px;
+}
+.lyrics {
+    white-space: pre-wrap;
 }
 .sideNavigation a.active {
     background-color: #008b00;

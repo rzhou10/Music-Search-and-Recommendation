@@ -65,9 +65,8 @@
                         displayResults.removeChild(displayResults.firstChild);
                     }
                     for (let item of responseMessage){
-                        
                         let newSong = document.createElement("a");
-                        newSong.href = "/songs/" + item._id
+                        newSong.href = "/songdetails/" + item._id;
                         newSong.innerText = item.title;
 
                         let newLi = document.createElement("li");
@@ -93,9 +92,8 @@
                         displayResults.removeChild(displayResults.firstChild);
                     }
                     for (let item of responseMessage){
-                        
                         let newSong = document.createElement("a");
-                        newSong.href = "/songs/" + item._id
+                        newSong.href = "/songdetails/" + item._id;
                         newSong.innerText = item.title;
                         
                         let newLi = document.createElement("li");

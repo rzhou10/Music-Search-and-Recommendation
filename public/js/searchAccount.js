@@ -17,7 +17,7 @@
             var newItem = values['searchItem'];
             var newField = values['specificField'];
             
-            var displayResults = document.getElementById("resultList");
+            var displayResults = document.getElementById("titles");
 
             //AJAX form validation
             if (newItem === "" && newField === ""){
@@ -53,7 +53,7 @@
             if (newField === "All"){
                 let requestConfig = {
                     method: "POST",
-                    url: "/account/",
+                    url: "/",
                     contentType: "application/json",
                     data: JSON.stringify({
                         specificField: newField
@@ -65,9 +65,8 @@
                         displayResults.removeChild(displayResults.firstChild);
                     }
                     for (let item of responseMessage){
-                        
                         let newSong = document.createElement("a");
-                        newSong.href = "/songs/" + item.id
+                        newSong.href = "/songs/" + item._id;
                         newSong.innerText = item.title;
 
                         let newLi = document.createElement("li");
@@ -80,7 +79,7 @@
             else {
                 let requestConfig = {
                     method: "POST",
-                    url: "/account/",
+                    url: "/",
                     contentType: "application/json",
                     data: JSON.stringify({
                         searchItem: newItem,
@@ -93,9 +92,8 @@
                         displayResults.removeChild(displayResults.firstChild);
                     }
                     for (let item of responseMessage){
-                        
                         let newSong = document.createElement("a");
-                        newSong.href = "/songs/" + item.id
+                        newSong.href = "/songs/" + item._id;
                         newSong.innerText = item.title;
                         
                         let newLi = document.createElement("li");
